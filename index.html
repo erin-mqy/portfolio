@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Erin's</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<!-- Status Bar -->
+<div id="statusbar">
+  <div class="left">
+    <span class="sb-logo">d e k o q w i n s</span>
+    <span class="sb-menu" id="sb-file">File</span>
+    <span class="sb-menu">Edit</span>
+    <span class="sb-menu">View</span>
+    <span class="sb-menu">Help</span>
+  </div>
+  <div class="right">
+    <span id="clock"></span>
+  </div>
+</div>
+
+<!-- Desktop -->
+<div id="desktop">
+  <div id="terminal">
+
+    <!-- Title bar -->
+    <div id="titlebar">
+      <div class="dot red"    title="close"></div>
+      <div class="dot yellow" title="minimize"></div>
+      <div class="dot green"  title="maximize"></div>
+      <div id="titlebar-label">visitor@portfolio — terminal</div>
+    </div>
+
+    <!-- Output -->
+    <div id="terminal-body"></div>
+
+    <!-- Input -->
+    <div id="input-area">
+      <span id="input-prompt">visitor@portfolio:~$</span>
+      <input id="cmd-input" type="text" autocomplete="off" spellcheck="false" autofocus placeholder="type a command...">
+    </div>
+
+    <div class="resize-handle"></div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
