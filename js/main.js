@@ -140,7 +140,7 @@ game states — built from scratch.</div>
 
   help: `
 <div class="section-head">── manual ─────────────────────────────────</div>
-Open to opportunities
+
 <div class="accent" style="margin-bottom:6px">about</div>
 <div style="margin-bottom:12px">
   <span class="output">all you need to know</span>
