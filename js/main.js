@@ -61,15 +61,16 @@ const input  = document.getElementById('cmd-input');
 const SECTIONS = {
   about: `
 <div class="section-head">── about ──────────────────────────────────</div>
-<div class="output">Hi, I'm <span class="accent">Eirin Maisarah Khairunisa</span> — a developer and
-researcher at the intersection of data science,
-systems programming, graphical engineering and audio engineering.</div>
+<div class="output">Hi, I'm <span class="accent">Eirin Maisarah Khairunisa (She/Her)</span> — I like
+to larp as a sysadmin.
+
+Obligatory, I use Arch Manual Install BTW</div>
 <br>
 <div class="output">I'm also transgender if you can't tell lmao</div>
 <br>
 <div class="output">Location   <span class="accent">Kuala Lumpur, Malaysia</span></div>
 <div class="output">Focus      <span class="accent">Game Development, Data Science, Computer Architecture</span></div>
-<div class="output">Status     <span class="accent">Open to opportunities</span></div>
+<div class="output">Status     <span class="accent">Currently under a traineeship</span></div>
 `,
 
   projects: `
@@ -139,7 +140,7 @@ game states — built from scratch.</div>
 
   help: `
 <div class="section-head">── manual ─────────────────────────────────</div>
-
+Open to opportunities
 <div class="accent" style="margin-bottom:6px">about</div>
 <div style="margin-bottom:12px">
   <span class="output">all you need to know</span>
@@ -168,7 +169,7 @@ const WELCOME = `\
 <div style="display:flex;gap:22px;align-items:flex-start;padding-bottom:4px">
   <img src="img/The_New_Sound.png" alt="The New Sound" style="width:130px;height:130px;object-fit:cover;border-radius:6px;flex-shrink:0;display:block;border:1px solid rgba(244,114,182,0.2)">
   <div style="font-size:12px;line-height:1.75;padding-top:2px">
-    <div><span style="color:#f9a8d4;font-weight:bold">geordie</span><span class="muted">@</span><span style="color:#f9a8d4;font-weight:bold">greep</span></div>
+    <div><span style="color:#f9a8d4;font-weight:bold">erin</span><span class="muted">@</span><span style="color:#f9a8d4;font-weight:bold">portfolio</span></div>
     <div class="muted" style="margin-bottom:4px">─────────────────────────</div>
     <div><span class="accent" style="display:inline-block;width:52px">name</span>  <span class="output">Geordie Greep</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">born</span>  <span class="output">1998 · Bristol, UK</span></div>
