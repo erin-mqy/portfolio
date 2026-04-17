@@ -123,7 +123,7 @@ game states — built from scratch.</div>
 <div style="display:flex;gap:22px;align-items:flex-start;padding-bottom:4px">
   <img src="img/Patchouli Knowledge - Touhou Lostword Icon.jpg" alt="The New Sound" style="width:130px;height:130px;object-fit:cover;border-radius:6px;flex-shrink:0;display:block;border:1px solid rgba(244,114,182,0.2)">
   <div style="font-size:12px;line-height:1.75;padding-top:2px">
-    <div><span style="color:#f9a8d4;font-weight:bold">erin</span><span class="muted">@</span><span style="color:#f9a8d4;font-weight:bold">portfolio</span></div>
+    <div><span style="color:#f9a8d4;font-weight:bold">visitor</span><span class="muted">@</span><span style="color:#f9a8d4;font-weight:bold">portfolio</span></div>
     <div class="muted" style="margin-bottom:4px">─────────────────────────</div>
     <div><span class="accent" style="display:inline-block;width:52px">name</span>  <span class="output">Erin Maisarah Khairunisa</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">born</span>  <span class="output">2002 · Kuching, MY</span></div>
@@ -231,6 +231,83 @@ const PERM_CMDS = {
   mount: 'mount', umount: 'unmount', iptables: 'modify',
 };
 
+async function lsDir(dir, showHidden, longFmt) {
+  if (dir === 'home') {
+    if (longFmt || showHidden) {
+      let dotRows = '';
+      if (showHidden) {
+        dotRows = `-rw-------  1 visitor visitor  220 Apr 17 12:00 <span class="muted">.bash_history</span>
+-rw-r--r--  1 visitor visitor  220 Apr 17 12:00 <span class="muted">.bash_logout</span>
+-rw-r--r--  1 visitor visitor  523 Apr 17 12:00 <span class="muted">.bashrc</span>
+-rw-r--r--  1 visitor visitor  807 Apr 17 12:00 <span class="muted">.profile</span>
+`;
+      }
+      appendHTML(`<div class="output" style="white-space:pre;line-height:1.75">total ${showHidden ? 24 : 8}
+drwxr-xr-x  4 visitor visitor  160 Apr 17 12:34 <span class="accent">.</span>
+drwxr-xr-x 15 root    root    300 Apr 17 12:00 <span class="muted">..</span>
+${dotRows}drwxr-xr-x  2 visitor visitor   80 Apr 17 12:00 <span class="accent">blog</span>
+drwxr-xr-x  2 visitor visitor   80 Apr 17 12:00 <span class="accent">media</span></div>`);
+    } else {
+      appendHTML(`<div class="output"><span class="accent">blog</span>  <span class="accent">media</span></div>`);
+    }
+  } else if (dir === 'blog') {
+    try {
+      const res = await fetch('blog/index.json');
+      const names = await res.json();
+      if (!names.length) {
+        appendLine(`<span class="muted">— empty —</span>`);
+      } else if (longFmt) {
+        const rows = names.map(n => `-rw-r--r--  1 visitor visitor   1024 Apr 17 12:00 ${escHtml(n)}`);
+        appendHTML(`<div class="output" style="white-space:pre;line-height:1.75">total ${names.length}\n${rows.join('\n')}</div>`);
+      } else {
+        appendHTML(`<div class="output">${names.map(n => escHtml(n)).join('  ')}</div>`);
+      }
+    } catch {
+      appendLine(`<span class="bad">ls: cannot open directory: I/O error</span>`);
+    }
+  } else if (dir === 'media') {
+    if (longFmt || showHidden) {
+      appendHTML(`<div class="output" style="white-space:pre;line-height:1.75">total 8
+drwxr-xr-x  4 visitor visitor  160 Apr 17 12:00 <span class="accent">.</span>
+drwxr-xr-x  4 visitor visitor  160 Apr 17 12:34 <span class="muted">..</span>
+drwxr-xr-x  2 visitor visitor   80 Apr 17 12:00 <span class="accent">photos</span>
+drwxr-xr-x  2 visitor visitor   80 Apr 17 12:00 <span class="accent">videos</span></div>`);
+    } else {
+      appendHTML(`<div class="output"><span class="accent">photos</span>  <span class="accent">videos</span></div>`);
+    }
+  } else if (dir === 'videos') {
+    try {
+      const res = await fetch('media/videos/index.json');
+      const videos = await res.json();
+      if (!videos.length) {
+        appendLine(`<span class="muted">— empty —</span>`);
+      } else if (longFmt) {
+        const rows = videos.map(v => `-rw-r--r--  1 visitor visitor   1024 Apr 17 12:00 ${escHtml(v.title)}`);
+        appendHTML(`<div class="output" style="white-space:pre;line-height:1.75">total ${videos.length}\n${rows.join('\n')}</div>`);
+      } else {
+        appendHTML(`<div class="output">${videos.map(v => escHtml(v.title)).join('  ')}</div>`);
+      }
+    } catch {
+      appendLine(`<span class="bad">ls: cannot open directory: I/O error</span>`);
+    }
+  } else if (dir === 'photos') {
+    try {
+      const res = await fetch('media/photos/index.json');
+      const entries = await res.json();
+      if (!entries.length) {
+        appendLine(`<span class="muted">— empty —</span>`);
+      } else if (longFmt) {
+        const rows = entries.map(e => `-rw-r--r--  1 visitor visitor   2048 Apr 17 12:00 ${escHtml(e.name)}`);
+        appendHTML(`<div class="output" style="white-space:pre;line-height:1.75">total ${entries.length}\n${rows.join('\n')}</div>`);
+      } else {
+        appendHTML(`<div class="output">${entries.map(e => escHtml(e.name)).join('  ')}</div>`);
+      }
+    } catch {
+      appendLine(`<span class="bad">ls: cannot open directory: I/O error</span>`);
+    }
+  }
+}
+
 function runCommand(cmd) {
   const parts = cmd.split(/\s+/);
   const base  = parts[0];
@@ -291,84 +368,43 @@ function runCommand(cmd) {
   }
 
   if (base === 'ls') {
-    const showHidden = parts.some(p => /^-[a-z]*a/.test(p));
-    const longFmt    = parts.some(p => /^-[a-z]*l/.test(p));
-    (async () => {
-      if (cwd === 'home') {
-        if (longFmt || showHidden) {
-          let dotRows = '';
-          if (showHidden) {
-            dotRows = `-rw-------  1 visitor visitor  220 Apr 17 12:00 <span class="muted">.bash_history</span>
--rw-r--r--  1 visitor visitor  220 Apr 17 12:00 <span class="muted">.bash_logout</span>
--rw-r--r--  1 visitor visitor  523 Apr 17 12:00 <span class="muted">.bashrc</span>
--rw-r--r--  1 visitor visitor  807 Apr 17 12:00 <span class="muted">.profile</span>
-`;
-          }
-          appendHTML(`<div class="output" style="white-space:pre;line-height:1.75">total ${showHidden ? 24 : 8}
-drwxr-xr-x  4 visitor visitor  160 Apr 17 12:34 <span class="accent">.</span>
-drwxr-xr-x 15 root    root    300 Apr 17 12:00 <span class="muted">..</span>
-${dotRows}drwxr-xr-x  2 visitor visitor   80 Apr 17 12:00 <span class="accent">blog</span>
-drwxr-xr-x  2 visitor visitor   80 Apr 17 12:00 <span class="accent">media</span></div>`);
-        } else {
-          appendHTML(`<div class="output"><span class="accent">blog</span>  <span class="accent">media</span></div>`);
-        }
-      } else if (cwd === 'blog') {
-        try {
-          const res = await fetch('blog/index.json');
-          const names = await res.json();
-          if (!names.length) {
-            appendLine(`<span class="muted">— empty —</span>`);
-          } else if (longFmt) {
-            const rows = names.map(n => `-rw-r--r--  1 visitor visitor   1024 Apr 17 12:00 ${escHtml(n)}`);
-            appendHTML(`<div class="output" style="white-space:pre;line-height:1.75">total ${names.length}\n${rows.join('\n')}</div>`);
-          } else {
-            appendHTML(`<div class="output">${names.map(n => escHtml(n)).join('  ')}</div>`);
-          }
-        } catch {
-          appendLine(`<span class="bad">ls: cannot open directory: I/O error</span>`);
-        }
-      } else if (cwd === 'media') {
-        if (longFmt || showHidden) {
-          appendHTML(`<div class="output" style="white-space:pre;line-height:1.75">total 8
-drwxr-xr-x  4 visitor visitor  160 Apr 17 12:00 <span class="accent">.</span>
-drwxr-xr-x  4 visitor visitor  160 Apr 17 12:34 <span class="muted">..</span>
-drwxr-xr-x  2 visitor visitor   80 Apr 17 12:00 <span class="accent">photos</span>
-drwxr-xr-x  2 visitor visitor   80 Apr 17 12:00 <span class="accent">videos</span></div>`);
-        } else {
-          appendHTML(`<div class="output"><span class="accent">photos</span>  <span class="accent">videos</span></div>`);
-        }
-      } else if (cwd === 'videos') {
-        try {
-          const res = await fetch('media/videos/index.json');
-          const videos = await res.json();
-          if (!videos.length) {
-            appendLine(`<span class="muted">— empty —</span>`);
-          } else if (longFmt) {
-            const rows = videos.map(v => `-rw-r--r--  1 visitor visitor   1024 Apr 17 12:00 ${escHtml(v.title)}`);
-            appendHTML(`<div class="output" style="white-space:pre;line-height:1.75">total ${videos.length}\n${rows.join('\n')}</div>`);
-          } else {
-            appendHTML(`<div class="output">${videos.map(v => escHtml(v.title)).join('  ')}</div>`);
-          }
-        } catch {
-          appendLine(`<span class="bad">ls: cannot open directory: I/O error</span>`);
-        }
-      } else if (cwd === 'photos') {
-        try {
-          const res = await fetch('media/photos/index.json');
-          const entries = await res.json();
-          if (!entries.length) {
-            appendLine(`<span class="muted">— empty —</span>`);
-          } else if (longFmt) {
-            const rows = entries.map(e => `-rw-r--r--  1 visitor visitor   2048 Apr 17 12:00 ${escHtml(e.name)}`);
-            appendHTML(`<div class="output" style="white-space:pre;line-height:1.75">total ${entries.length}\n${rows.join('\n')}</div>`);
-          } else {
-            appendHTML(`<div class="output">${entries.map(e => escHtml(e.name)).join('  ')}</div>`);
-          }
-        } catch {
-          appendLine(`<span class="bad">ls: cannot open directory: I/O error</span>`);
-        }
+    const flagArgs = parts.slice(1).filter(p => p.startsWith('-'));
+    const pathArgs = parts.slice(1).filter(p => !p.startsWith('-'));
+
+    const invalidFlag = flagArgs.find(f => !/^-[la]+$/.test(f));
+    if (invalidFlag) {
+      appendLine(`<span class="bad">ls: invalid option -- '${escHtml(invalidFlag.replace(/^-+/, '')[0])}'</span>`);
+      appendLine(`<span class="muted">Try 'ls --help' for more information.</span>`);
+      return;
+    }
+
+    if (pathArgs.length > 0) {
+      const target = pathArgs[0];
+      if (target.startsWith('/root') || target.startsWith('/etc') || target.startsWith('/var') || target.startsWith('/proc')) {
+        appendLine(`<span class="bad">ls: cannot open directory '${escHtml(target)}': Permission denied</span>`);
+        return;
       }
-    })();
+      if (target.includes('/')) {
+        const firstSegment = target.split('/')[0];
+        if (VDIRS[cwd].subdirs.includes(firstSegment)) {
+          appendLine(`<span class="muted">ain't no way i'm actually building a file system in my funny portfolio website</span>`);
+        } else {
+          appendLine(`<span class="bad">ls: cannot access '${escHtml(target)}': No such file or directory</span>`);
+        }
+        return;
+      }
+      const validChild = VDIRS[cwd].subdirs.find(s => s === target);
+      if (!validChild) {
+        appendLine(`<span class="bad">ls: cannot access '${escHtml(target)}': No such file or directory</span>`);
+        return;
+      }
+      lsDir(validChild, flagArgs.some(f => f.includes('a')), flagArgs.some(f => f.includes('l')));
+      return;
+    }
+
+    const showHidden = flagArgs.some(f => f.includes('a'));
+    const longFmt    = flagArgs.some(f => f.includes('l'));
+    lsDir(cwd, showHidden, longFmt);
     return;
   }
 
