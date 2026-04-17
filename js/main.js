@@ -162,27 +162,31 @@ game states — built from scratch.</div>
 </div>
 `,
 
-  'sudo rm -rf': '<div class="muted" style="margin-bottom:6px">haha funny</div>' 
+  'sudo rm -rf': '<div class="muted" style="margin-bottom:6px">haha funny</div>',
+
+  fastfetch: `
+<div style="display:flex;gap:22px;align-items:flex-start;padding-bottom:4px">
+  <img src="img/Patchouli Knowledge - Touhou Lostword Icon.jpg" alt="The New Sound" style="width:130px;height:130px;object-fit:cover;border-radius:6px;flex-shrink:0;display:block;border:1px solid rgba(244,114,182,0.2)">
+  <div style="font-size:12px;line-height:1.75;padding-top:2px">
+    <div><span style="color:#f9a8d4;font-weight:bold">erin</span><span class="muted">@</span><span style="color:#f9a8d4;font-weight:bold">portfolio</span></div>
+    <div class="muted" style="margin-bottom:4px">─────────────────────────</div>
+    <div><span class="accent" style="display:inline-block;width:52px">name</span>  <span class="output">Erin Maisarah Khairunisa</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">born</span>  <span class="output">2002 · Kuching, MY</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">edu</span>  <span class="output">BS in Computer and Information Science, Ohio State University 
+    <div><span class="accent" style="display:inline-block;width:52px">skill</span> <span class="output">Web-Dev · Data Science · Computer Architecture</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">wm</span>    <span class="output">Niri</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">shell</span> <span class="output">zsh</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">distro</span><span class="output">I use Arch btw</span></div>
+    <br>
+    <div class="muted">type <span class="accent">help</span> to explore ·  type <span class="accent">clear</span> to reset</div>
+  </div>
+</div>
+  `
 };
 
 const WELCOME = `\
 <div style="display:flex;gap:22px;align-items:flex-start;padding-bottom:4px">
-  <img src="img/The_New_Sound.png" alt="The New Sound" style="width:130px;height:130px;object-fit:cover;border-radius:6px;flex-shrink:0;display:block;border:1px solid rgba(244,114,182,0.2)">
-  <div style="font-size:12px;line-height:1.75;padding-top:2px">
-    <div><span style="color:#f9a8d4;font-weight:bold">erin</span><span class="muted">@</span><span style="color:#f9a8d4;font-weight:bold">portfolio</span></div>
-    <div class="muted" style="margin-bottom:4px">─────────────────────────</div>
-    <div><span class="accent" style="display:inline-block;width:52px">name</span>  <span class="output">Geordie Greep</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">born</span>  <span class="output">1998 · Bristol, UK</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">band</span>  <span class="output">black midi <span class="muted">(2017–2024)</span></span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">solo</span>  <span class="output">The New Sound <span class="muted">(2024)</span></span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">genre</span> <span class="output">avant-garde · jazz · chaos</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">wm</span>    <span class="output">Niri</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">shell</span> <span class="output">zsh</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">uptime</span><span class="output">67 days</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">quote</span> <span class="muted">"everyone knows i'm holy"</span></div>
-    <br>
-    <div class="muted">type <span class="accent">help</span> to explore ·  type <span class="accent">clear</span> to reset</div>
-  </div>
+  
 </div>`;
 
 function appendHTML(html) {
@@ -196,7 +200,7 @@ function appendLine(html) {
   appendHTML(`<div style="margin-bottom:2px">${html}</div>`);
 }
 
-appendHTML(WELCOME);
+appendHTML(SECTIONS.fastfetch);
 
 const cmdHistory = [];
 let histPtr = -1;
@@ -208,7 +212,7 @@ input.addEventListener('keydown', e => {
     if (!cmd) return;
     cmdHistory.unshift(raw);
     histPtr = -1;
-    appendLine(`<span class="prompt">visitor@portfolio:~$</span>&nbsp;<span class="cmd-txt">${escHtml(raw)}</span>`);
+    appendLine(`<span class="prompt">erin@portfolio:~$</span>&nbsp;<span class="cmd-txt">${escHtml(raw)}</span>`);
     runCommand(cmd);
     input.value = '';
     e.preventDefault();
@@ -234,9 +238,6 @@ function runCommand(cmd) {
     appendHTML(SECTIONS[cmd]);
   } else if (cmd === 'clear') {
     output.innerHTML = '';
-    appendHTML(WELCOME);
-  } else if (cmd === 'fastfetch') {
-    appendHTML(WELCOME);
   } else {
     appendLine(`<span class="bad">command not found:</span> <span class="cmd-txt">${escHtml(cmd)}</span> <span class="muted">— try 'help'</span>`);
   }
@@ -256,6 +257,8 @@ document.querySelector('.dot.red').addEventListener('click', () => {
   term.style.transform = 'scale(0.95)';
   term.style.transition = 'all .2s';
   setTimeout(() => {
+    output.innerHTML = '';
+    appendHTML(SECTIONS.fastfetch);
     term.style.opacity = '1';
     term.style.transform = 'scale(1)';
   }, 600);
