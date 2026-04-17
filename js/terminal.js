@@ -111,6 +111,9 @@ game states — built from scratch.</div>
     <span class="muted">rm  mv  cp  mkdir  chmod  chown</span>
     <span class="muted">apt  pacman  systemctl  kill  ...</span>
 
+<span class="accent">DISPLAY</span>
+    <span class="output">rinbg</span>        list / cycle desktop wallpaper
+
 <span class="accent">OTHER</span>
     <span class="output">sudo</span> &lt;cmd&gt;   run as root
     <span class="output">man</span> &lt;cmd&gt;    display manual page
@@ -460,6 +463,57 @@ man sudo
   if (base === 'man') {
     if (!rest) {
       appendLine(`<span class="bad">What manual page do you want?</span>`);
+    } else if (rest === 'rinbg') {
+      appendHTML(`<div style="white-space:pre;line-height:1.9;font-size:12px"><span class="accent">RINBG(1)                  User Commands                  RINBG(1)</span>
+
+<span class="accent">NAME</span>
+       rinbg — set or cycle the desktop wallpaper
+
+<span class="accent">SYNOPSIS</span>
+       <span class="output">rinbg</span> [<span class="output">list</span>]
+       <span class="output">rinbg</span> <span class="output">next</span>
+       <span class="output">rinbg</span> <span class="output">rand</span>
+       <span class="output">rinbg</span> <span class="output"><em>N</em></span>
+
+<span class="accent">DESCRIPTION</span>
+       rinbg controls the desktop wallpaper and derives the entire
+       UI colour palette from the dominant hue of the selected image.
+       With no arguments (or <span class="output">list</span>), it prints available wallpapers
+       and marks the currently active one with a bullet (●).
+
+<span class="accent">SUBCOMMANDS</span>
+       <span class="output">list</span>      Print all wallpapers. Default when no argument given.
+
+       <span class="output">next</span>      Advance to the next wallpaper in the list.
+                 Wraps around after the last entry.
+
+       <span class="output">rand</span>      Switch to a randomly chosen wallpaper (never
+                 the same one currently shown).
+
+       <span class="output">0</span>         Remove the wallpaper entirely and restore the
+                 default pink (<span class="accent">#f472b6</span>) colour palette.
+
+       <span class="output"><em>N</em></span>         Switch to wallpaper number N (1-based, as shown
+                 by <span class="output">rinbg list</span>).
+
+<span class="accent">PALETTE BEHAVIOUR</span>
+       When a wallpaper is set, rinbg samples the image at 80×80px,
+       buckets pixels by hue (weighted by saturation), and picks the
+       most vivid dominant hue. It then derives accent colours and
+       dark-tinted panel backgrounds from that hue and applies them
+       as CSS custom properties in real time. Stars in the starfield
+       update their colour accordingly.
+
+       Wallpapers rotate automatically every 5 minutes.
+
+<span class="accent">EXIT STATUS</span>
+       0  Success. Non-zero on invalid argument (error printed to
+          terminal output).
+
+<span class="accent">SEE ALSO</span>
+       <span class="output">help</span>(1), <span class="output">fastfetch</span>(1)
+
+<span class="muted">dekoqwins portfolio                  2026                  RINBG(1)</span></div>`);
     } else {
       appendLine(`<span class="bad">No manual entry for ${escHtml(rest)}</span>`);
       appendLine(`<span class="muted">try <span class="accent">help</span> instead</span>`);
@@ -491,27 +545,65 @@ man sudo
     return;
   }
 
+  // ── rinbg ────────────────────────────────────────────────────────────────
+  if (base === 'rinbg') {
+    const wpName = src => escHtml(src.replace(/^img\//, '').replace(/\.[^.]+$/, ''));
+    const sub = parts[1];
+
+    if (!sub || sub === 'list') {
+      const dot  = i => i === wpCurrent ? `<span class="accent"> ●</span>` : `  `;
+      const rows = [
+        `  <span class="muted">0</span>${dot(-1)} <span class="output">none <span class="muted">(default pink)</span></span>`,
+        ...WALLPAPERS.map((src, i) =>
+          `  <span class="muted">${i + 1}</span>${dot(i)} <span class="output">${wpName(src)}</span>`
+        ),
+      ].join('\n');
+      appendHTML(`<div style="white-space:pre;line-height:1.9;font-size:12px"><span class="accent">rinbg</span>  <span class="muted">— cycle desktop wallpaper</span>
+
+${rows}
+
+<span class="muted">usage: rinbg [list|next|rand|&lt;N&gt;]</span></div>`);
+      return;
+    }
+
+    let idx;
+    if (sub === 'next') {
+      idx = (wpCurrent + 1) % WALLPAPERS.length;
+    } else if (sub === 'rand' || sub === 'random') {
+      do { idx = Math.floor(Math.random() * WALLPAPERS.length); } while (idx === wpCurrent && WALLPAPERS.length > 1);
+    } else {
+      const n = parseInt(sub, 10);
+      if (n === 0) {
+        wpCurrent = -1;
+        wpClear();
+        appendLine(`<span class="output">wallpaper → <span class="accent">none (default pink)</span></span>`);
+        return;
+      } else if (!isNaN(n) && n >= 1 && n <= WALLPAPERS.length) {
+        idx = n - 1;
+      } else {
+        appendLine(`<span class="bad">rinbg: invalid argument '${escHtml(sub)}'</span>`);
+        appendLine(`<span class="muted">usage: rinbg [list|next|rand|&lt;N&gt;]</span>`);
+        return;
+      }
+    }
+
+    wpCurrent = idx;
+    wpSwitchTo(wpCurrent);
+    appendLine(`<span class="output">wallpaper → <span class="accent">${wpName(WALLPAPERS[wpCurrent])}</span></span>`);
+    return;
+  }
+
   // ── fallback ────────────────────────────────────────────────────────────
   appendLine(`<span class="bad">command not found:</span> <span class="cmd-txt">${escHtml(cmd)}</span> <span class="muted">— try 'help'</span>`);
 }
 
-document.getElementById('desktop').addEventListener('click', e => {
+document.getElementById('desktop').addEventListener('click', () => {
   if (!window.getSelection().toString()) input.focus();
 });
 
 document.querySelector('.dot.red').addEventListener('click', () => {
-  const term = document.getElementById('terminal');
-  term.style.opacity = '0';
-  term.style.transform = 'scale(0.95)';
-  term.style.transition = 'all .2s';
-  setTimeout(() => {
-    output.innerHTML = '';
-    appendHTML(SECTIONS.fastfetch);
-    cwd = 'home';
-    updatePrompt();
-    term.style.opacity = '1';
-    term.style.transform = 'scale(1)';
-  }, 600);
+  termWin.classList.add('hidden');
+  sbHint.classList.add('visible');
 });
 
 // Make terminal draggable, resizable, and center it
@@ -519,3 +611,15 @@ const termWin = document.getElementById('terminal');
 centerWin(termWin);
 makeDraggable(termWin, document.getElementById('titlebar'));
 makeResizable(termWin);
+
+// ── Ctrl+Shift+T — toggle terminal ────────────────────────────────────────
+const sbHint = document.getElementById('sb-terminal-hint');
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey && e.key === 'T') {
+    e.preventDefault();
+    termWin.classList.toggle('hidden');
+    const hidden = termWin.classList.contains('hidden');
+    sbHint.classList.toggle('visible', hidden);
+    if (!hidden) input.focus();
+  }
+});

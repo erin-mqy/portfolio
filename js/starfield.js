@@ -21,14 +21,14 @@ function initStars() {
 
 function drawStars() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const accentRgb = window.starAccentRgb || '255, 200, 230';
   for (const s of stars) {
     s.phase += s.speed;
     const alpha = s.baseA * (0.55 + 0.45 * Math.sin(s.phase));
     ctx.beginPath();
     ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    const pinkish = s.r > 1.1;
-    ctx.fillStyle = pinkish
-      ? `rgba(255, 200, 230, ${alpha})`
+    ctx.fillStyle = s.r > 1.1
+      ? `rgba(${accentRgb}, ${alpha})`
       : `rgba(230, 225, 255, ${alpha})`;
     ctx.fill();
   }
