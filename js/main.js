@@ -171,7 +171,7 @@ game states — built from scratch.</div>
     <div><span style="color:#f9a8d4;font-weight:bold">erin</span><span class="muted">@</span><span style="color:#f9a8d4;font-weight:bold">portfolio</span></div>
     <div class="muted" style="margin-bottom:4px">─────────────────────────</div>
     <div><span class="accent" style="display:inline-block;width:52px">name</span>  <span class="output">Erin Maisarah Khairunisa</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">born</span>  <span class="output">2002 · Kuala Lumpur, MY</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">born</span>  <span class="output">2002 · Kuching, MY</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">edu</span>  <span class="output">BS in Computer and Information Science, Ohio State University 
     <div><span class="accent" style="display:inline-block;width:52px">skill</span> <span class="output">Web-Dev · Data Science · Computer Architecture</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">wm</span>    <span class="output">Niri</span></div>
