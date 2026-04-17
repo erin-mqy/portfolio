@@ -35,15 +35,19 @@ canvas#stars {
   user-select: none;
 }
 
-#statusbar .left  { display: flex; align-items: center; gap: 18px; }
-#statusbar .right { display: flex; align-items: center; gap: 14px; }
+#statusbar .left  { display: flex; align-items: center; gap: 18px; min-width: 0; overflow: hidden; }
+#statusbar .right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
 
-.sb-logo { color: #f472b6; font-weight: 700; font-size: 13px; letter-spacing: 1px; }
+.sb-logo { color: #f472b6; font-weight: 700; font-size: 13px; letter-spacing: 1px; white-space: nowrap; flex-shrink: 0; }
 .sb-menu { cursor: default; transition: color .15s; }
 .sb-menu:hover { color: #f472b6; }
 
 .sb-icon { font-size: 13px; opacity: 0.75; }
 #clock { font-size: 12px; color: #ccc; min-width: 160px; text-align: right; }
+
+@media (max-width: 480px) {
+  #clock { min-width: 0; }
+}
 
 /* ── DESKTOP ─────────────────────────────────────────── */
 #desktop {
