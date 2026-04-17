@@ -169,7 +169,7 @@ const VDIRS = {
   videos: { display: '~/media/videos', parent: 'media', subdirs: [] },
   photos: { display: '~/media/photos', parent: 'media', subdirs: [] },
 };
-function getPrompt() { return `erin@portfolio:${VDIRS[cwd].display}$`; }
+function getPrompt() { return `visitor@portfolio:${VDIRS[cwd].display}$`; }
 function updatePrompt() { if (sudoState === null) inputPrompt.textContent = getPrompt(); }
 
 input.addEventListener('keydown', e => {
