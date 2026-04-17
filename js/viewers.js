@@ -25,6 +25,7 @@ function openTextViewer(filename, content) {
   bringToFront(win);
   makeDraggable(win, win.querySelector('.fe-titlebar'));
   makeResizable(win);
+  makeMaximizable(win);
 
   win.querySelector('.dot.red').addEventListener('click', () => {
     win.style.transition = 'opacity .15s, transform .15s';
@@ -67,6 +68,7 @@ function openVideoPlayer(title, youtubeId) {
   bringToFront(win);
   makeDraggable(win, win.querySelector('.fe-titlebar'));
   makeResizable(win, 320, 220);
+  makeMaximizable(win);
 
   win.querySelector('.dot.red').addEventListener('click', () => {
     win.querySelector('iframe').src = '';
@@ -106,6 +108,7 @@ function openPhotoViewer(name, src) {
   bringToFront(win);
   makeDraggable(win, win.querySelector('.fe-titlebar'));
   makeResizable(win, 200, 180);
+  makeMaximizable(win);
 
   win.querySelector('.dot.red').addEventListener('click', () => {
     win.style.transition = 'opacity .15s, transform .15s';

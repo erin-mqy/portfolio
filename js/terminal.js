@@ -606,6 +606,8 @@ document.querySelector('.dot.red').addEventListener('click', () => {
   sbHint.classList.add('visible');
 });
 
+makeMaximizable(termWin);
+
 // Make terminal draggable, resizable, and center it
 const termWin = document.getElementById('terminal');
 centerWin(termWin);

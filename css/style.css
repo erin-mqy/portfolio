@@ -118,6 +118,14 @@ canvas#stars {
   transform: scale(0.95) translateY(8px);
   pointer-events: none;
 }
+.maximized {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  border-radius: 0 !important;
+  resize: none;
+}
 #terminal:hover {
   box-shadow:
     0 0 0 1px rgba(var(--accent-rgb), 0.1),

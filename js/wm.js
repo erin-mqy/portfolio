@@ -38,6 +38,25 @@ function centerWin(win, offsetX = 0, offsetY = 0) {
   win.style.top  = Math.max(0, (dr.height - win.offsetHeight) / 2 + offsetY) + 'px';
 }
 
+function makeMaximizable(win) {
+  let savedLeft, savedTop, savedWidth, savedHeight;
+  win.querySelector('.dot.green').addEventListener('click', () => {
+    const maximized = win.classList.toggle('maximized');
+    if (maximized) {
+      savedLeft   = win.style.left;
+      savedTop    = win.style.top;
+      savedWidth  = win.style.width;
+      savedHeight = win.style.height;
+      bringToFront(win);
+    } else {
+      win.style.left   = savedLeft;
+      win.style.top    = savedTop;
+      win.style.width  = savedWidth;
+      win.style.height = savedHeight;
+    }
+  });
+}
+
 function makeResizable(win, minW = 300, minH = 160) {
   const handle = win.querySelector('.resize-handle');
   if (!handle) return;

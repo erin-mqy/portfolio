@@ -170,6 +170,7 @@ function openFileExplorer() {
   bringToFront(win);
   makeDraggable(win, win.querySelector('.fe-titlebar'));
   makeResizable(win);
+  makeMaximizable(win);
 
   win.querySelector('.dot.red').addEventListener('click', () => {
     win.style.transition = 'opacity .15s, transform .15s';
