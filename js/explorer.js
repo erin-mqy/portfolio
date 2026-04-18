@@ -171,6 +171,7 @@ function openFileExplorer() {
   makeDraggable(win, win.querySelector('.fe-titlebar'));
   makeResizable(win);
   makeMaximizable(win);
+  registerTaskbarEntry(win, '📁', 'files');
 
   win.querySelector('.dot.red').addEventListener('click', () => {
     win.style.transition = 'opacity .15s, transform .15s';

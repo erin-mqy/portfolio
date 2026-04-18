@@ -601,27 +601,24 @@ document.getElementById('desktop').addEventListener('click', () => {
   if (!window.getSelection().toString()) input.focus();
 });
 
-document.querySelector('.dot.red').addEventListener('click', () => {
-  termWin.classList.add('hidden');
-  sbHint.classList.add('visible');
-});
-
-makeMaximizable(termWin);
-
 // Make terminal draggable, resizable, and center it
 const termWin = document.getElementById('terminal');
 centerWin(termWin);
 makeDraggable(termWin, document.getElementById('titlebar'));
 makeResizable(termWin);
+makeMaximizable(termWin);
+
+document.querySelector('.dot.red').addEventListener('click', () => {
+  termWin.classList.add('hidden');
+});
+
+registerTaskbarEntry(termWin, '>_', 'terminal');
 
 // ── Ctrl+Shift+T — toggle terminal ────────────────────────────────────────
-const sbHint = document.getElementById('sb-terminal-hint');
 document.addEventListener('keydown', e => {
   if (e.ctrlKey && e.key === 'T') {
     e.preventDefault();
     termWin.classList.toggle('hidden');
-    const hidden = termWin.classList.contains('hidden');
-    sbHint.classList.toggle('visible', hidden);
-    if (!hidden) input.focus();
+    if (!termWin.classList.contains('hidden')) input.focus();
   }
 });

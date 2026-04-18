@@ -8,6 +8,8 @@ let zTop = 20;
 
 function bringToFront(win) {
   win.style.zIndex = ++zTop;
+  document.querySelectorAll('.sb-task-btn').forEach(b => b.classList.remove('focused'));
+  if (win._taskBtn) win._taskBtn.classList.add('focused');
 }
 
 function makeDraggable(win, handle) {
@@ -36,6 +38,33 @@ function centerWin(win, offsetX = 0, offsetY = 0) {
   const dr = document.getElementById('desktop').getBoundingClientRect();
   win.style.left = Math.max(0, (dr.width  - win.offsetWidth)  / 2 + offsetX) + 'px';
   win.style.top  = Math.max(0, (dr.height - win.offsetHeight) / 2 + offsetY) + 'px';
+}
+
+function registerTaskbarEntry(win, icon, label) {
+  const taskbar = document.getElementById('sb-taskbar');
+  if (!taskbar) return;
+
+  const btn = document.createElement('button');
+  btn.className = 'sb-task-btn';
+  btn.innerHTML = `<span>${icon}</span><span>${label}</span>`;
+  taskbar.appendChild(btn);
+  win._taskBtn = btn;
+
+  btn.addEventListener('click', () => {
+    win.classList.remove('hidden');
+    bringToFront(win);
+    win.querySelector('input')?.focus();
+  });
+
+  new MutationObserver(() => {
+    btn.classList.toggle('dimmed', win.classList.contains('hidden'));
+  }).observe(win, { attributes: true, attributeFilter: ['class'] });
+
+  new MutationObserver(mutations => {
+    for (const m of mutations)
+      for (const node of m.removedNodes)
+        if (node === win) btn.remove();
+  }).observe(document.getElementById('desktop'), { childList: true });
 }
 
 function makeMaximizable(win) {

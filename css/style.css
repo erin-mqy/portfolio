@@ -71,17 +71,40 @@ canvas#stars {
 .sb-icon { font-size: 13px; opacity: 0.75; }
 #clock { font-size: 12px; color: #ccc; min-width: 160px; text-align: right; }
 
-#sb-terminal-hint {
+#sb-taskbar {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 11px;
-  color: rgba(var(--accent-rgb), 0.5);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity .2s;
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
-#sb-terminal-hint.visible { opacity: 1; }
+.sb-task-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  height: 20px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-family: 'Courier New', monospace;
+  color: #ccc;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, opacity .15s;
+  white-space: nowrap;
+}
+.sb-task-btn:hover {
+  background: rgba(255,255,255,0.07);
+}
+.sb-task-btn.focused {
+  border-color: rgba(var(--accent-rgb), 0.45);
+  color: var(--accent-light);
+}
+.sb-task-btn.dimmed {
+  opacity: 0.35;
+}
 
 @media (max-width: 480px) {
   #clock { min-width: 0; }
@@ -121,8 +144,8 @@ canvas#stars {
 .maximized {
   top: 0 !important;
   left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
+  width: 100% !important;
+  height: 100% !important;
   border-radius: 0 !important;
   resize: none;
 }
