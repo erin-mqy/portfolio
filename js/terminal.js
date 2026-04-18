@@ -61,24 +61,16 @@ game states — built from scratch.</div>
 <div style="margin-bottom:12px">
   <span class="stag">sentence-transformers</span><span class="stag">BART</span><span class="stag">UMAP</span><span class="stag">scikit-learn</span><span class="stag">HDBSCAN</span>
 </div>
-<div class="output" style="margin-bottom:6px">Audio / DSP</div>
-<div style="margin-bottom:12px">
-  <span class="stag">VST3/CLAP</span><span class="stag">nih-plug</span><span class="stag">real-time audio</span><span class="stag">physical modeling</span>
-</div>
 <div class="output" style="margin-bottom:6px">Data &amp; Web</div>
 <div style="margin-bottom:12px">
   <span class="stag">pandas</span><span class="stag">Streamlit</span><span class="stag">GitHub Actions</span><span class="stag">Docker</span>
-</div>
-<div class="output" style="margin-bottom:6px">CV &amp; OCR</div>
-<div>
-  <span class="stag">OpenCV</span><span class="stag">Tesseract</span><span class="stag">PaddleOCR</span><span class="stag">Pillow</span>
 </div>
 `,
 
   contact: `
 <div class="section-head">── contact ─────────────────────────────────</div>
 <div class="output" style="margin-bottom:14px">Let's build something together.</div>
-<div class="output"> Email    <span class="tlink" onclick="location.href='mailto:m.khairie11@gmail.com'">m.khairie11@gmail.com</span></div>
+<div class="output"> Email    <span class="tlink" onclick="location.href='mailto:erin-mqy@proton.me'">erin-mqy@proton.me</span></div>
 <div class="output"> GitHub   <span class="tlink" onclick="window.open('https://github.com/erin-mqy')">github.com/erin-mqy</span></div>
 `,
 
@@ -129,12 +121,14 @@ game states — built from scratch.</div>
     <div><span style="color:#f9a8d4;font-weight:bold">visitor</span><span class="muted">@</span><span style="color:#f9a8d4;font-weight:bold">portfolio</span></div>
     <div class="muted" style="margin-bottom:4px">─────────────────────────</div>
     <div><span class="accent" style="display:inline-block;width:52px">name</span>  <span class="output">Erin Maisarah Khairunisa</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">born</span>  <span class="output">2002 · Kuching, MY</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">edu</span>  <span class="output">BS in Computer and Information Science, Ohio State University
+    <div><span class="accent" style="display:inline-block;width:52px">born</span>  <span class="output">2002 · Kuala Lumpur, MY</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">edu</span>  <span class="output">BS in Computer and Information Science
     <div><span class="accent" style="display:inline-block;width:52px">skill</span> <span class="output">Web-Dev · Data Science · Computer Architecture</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">wm</span>    <span class="output">Niri</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">shell</span> <span class="output">zsh</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">distro</span><span class="output">I use Arch btw</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">like</span><span class="output">linux, yuri, rhythm game, fighting game, tcg</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">hate</span><span class="output">microsoft, imperialism</span></div>
     <br>
     <div class="muted">type <span class="accent">help</span> to explore ·  type <span class="accent">clear</span> to reset</div>
   </div>
