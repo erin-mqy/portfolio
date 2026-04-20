@@ -120,12 +120,12 @@ game states — built from scratch.</div>
   <div style="font-size:12px;line-height:1.75;padding-top:2px">
     <div><span style="color:#f9a8d4;font-weight:bold">visitor</span><span class="muted">@</span><span style="color:#f9a8d4;font-weight:bold">portfolio</span></div>
     <div class="muted" style="margin-bottom:4px">─────────────────────────</div>
-    <div><span class="accent" style="display:inline-block;width:52px">name</span>  <span class="output">Erin Maisarah Khairunisa</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">born</span>  <span class="output">2002 · Kuala Lumpur, MY</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">edu</span>  <span class="output">BS in Computer and Information Science
-    <div><span class="accent" style="display:inline-block;width:52px">skill</span> <span class="output">Web-Dev · Data Science · Computer Architecture</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">wm</span>    <span class="output">Niri</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">shell</span> <span class="output">zsh</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">name</span><span class="output">Erin Maisarah Khairunisa</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">born</span><span class="output">2002 · Kuala Lumpur, MY</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">edu</span><span class="output">BS in Computer and Information Science</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">skill</span><span class="output">Web-Dev · Data Science · Computer Architecture</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">wm</span><span class="output">Niri</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">shell</span><span class="output">zsh</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">distro</span><span class="output">I use Arch btw</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">like</span><span class="output">linux, yuri, rhythm game, fighting game, tcg</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">hate</span><span class="output">microsoft, imperialism</span></div>
