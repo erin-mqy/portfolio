@@ -5,12 +5,11 @@ const input  = document.getElementById('cmd-input');
 const SECTIONS = {
   about: `
 <div class="section-head">── about ──────────────────────────────────</div>
-<div class="output">Hi, I'm <span class="accent">Eirin Maisarah Khairunisa (She/Her)</span> — I like
+<div class="output">Hi, I'm <span class="accent"> Muhammad Khairie Iswandy</span> — I like
 to larp as a sysadmin.
 
 Obligatory, I use Arch Manual Install BTW</div>
-<br>
-<div class="output">I'm also transgender if you can't tell lmao</div>
+
 <br>
 <div class="output">Location   <span class="accent">Kuala Lumpur, Malaysia</span></div>
 <div class="output">Focus      <span class="accent">Game Development, Data Science, Computer Architecture</span></div>
@@ -70,13 +69,13 @@ game states — built from scratch.</div>
   contact: `
 <div class="section-head">── contact ─────────────────────────────────</div>
 <div class="output" style="margin-bottom:14px">Let's build something together.</div>
-<div class="output"> Email    <span class="tlink" onclick="location.href='mailto:erin-mqy@proton.me'">erin-mqy@proton.me</span></div>
-<div class="output"> GitHub   <span class="tlink" onclick="window.open('https://github.com/erin-mqy')">github.com/erin-mqy</span></div>
+<div class="output"> Email    <span class="tlink" onclick="location.href='mailto:m.khairie11@gmail.com'">m.khairie11@gmail.com</span></div>
+<div class="output"> GitHub   <span class="tlink" onclick="window.open('https://github.com/dekolab')">github.com/dekolab</span></div>
 `,
 
   help: `
 <div style="white-space:pre;line-height:1.9;font-size:12px"><span class="accent">NAME</span>
-    portfolio — erin's terminal portfolio
+    portfolio — Muhammad Khairie Iswandy's terminal portfolio
 
 <span class="accent">PORTFOLIO COMMANDS</span>
     <span class="output">about</span>        who I am
@@ -116,18 +115,18 @@ game states — built from scratch.</div>
 
   fastfetch: `
 <div style="display:flex;gap:22px;align-items:flex-start;padding-bottom:4px">
-  <img src="img/Patchouli Knowledge - Touhou Lostword Icon.jpg" alt="The New Sound" style="width:130px;height:130px;object-fit:cover;border-radius:6px;flex-shrink:0;display:block;border:1px solid rgba(244,114,182,0.2)">
+  <img src="img/moon.jpg" alt="The New Sound" style="width:130px;height:130px;object-fit:cover;border-radius:6px;flex-shrink:0;display:block;border:1px solid rgba(var(--accent-rgb),0.2)">
   <div style="font-size:12px;line-height:1.75;padding-top:2px">
-    <div><span style="color:#f9a8d4;font-weight:bold">visitor</span><span class="muted">@</span><span style="color:#f9a8d4;font-weight:bold">portfolio</span></div>
+    <div><span style="color:var(--accent-light);font-weight:bold">visitor</span><span class="muted">@</span><span style="color:var(--accent-light);font-weight:bold">portfolio</span></div>
     <div class="muted" style="margin-bottom:4px">─────────────────────────</div>
-    <div><span class="accent" style="display:inline-block;width:52px">name</span><span class="output">Erin Maisarah Khairunisa</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">name</span><span class="output">Muhammad Khairie bin Iswandy</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">born</span><span class="output">2002 · Kuala Lumpur, MY</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">edu</span><span class="output">BS in Computer and Information Science</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">skill</span><span class="output">Web-Dev · Data Science · Computer Architecture</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">wm</span><span class="output">Niri</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">shell</span><span class="output">zsh</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">distro</span><span class="output">I use Arch btw</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">like</span><span class="output">linux, yuri, rhythm game, fighting game, tcg</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">like</span><span class="output">linux, rhythm game, fighting game, tcg</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">hate</span><span class="output">microsoft, imperialism</span></div>
     <br>
     <div class="muted">type <span class="accent">help</span> to explore ·  type <span class="accent">clear</span> to reset</div>
@@ -485,7 +484,7 @@ man sudo
                  the same one currently shown).
 
        <span class="output">0</span>         Remove the wallpaper entirely and restore the
-                 default pink (<span class="accent">#f472b6</span>) colour palette.
+                 default red (<span class="accent">#ef4444</span>) colour palette.
 
        <span class="output"><em>N</em></span>         Switch to wallpaper number N (1-based, as shown
                  by <span class="output">rinbg list</span>).
@@ -507,7 +506,7 @@ man sudo
 <span class="accent">SEE ALSO</span>
        <span class="output">help</span>(1), <span class="output">fastfetch</span>(1)
 
-<span class="muted">dekoqwins portfolio                  2026                  RINBG(1)</span></div>`);
+<span class="muted">dekolab portfolio                    2026                  RINBG(1)</span></div>`);
     } else {
       appendLine(`<span class="bad">No manual entry for ${escHtml(rest)}</span>`);
       appendLine(`<span class="muted">try <span class="accent">help</span> instead</span>`);

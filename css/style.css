@@ -2,10 +2,10 @@
 
 /* ── THEME VARIABLES ─────────────────────────────────── */
 :root {
-  --accent:         #f472b6;
-  --accent-rgb:     244, 114, 182;
-  --accent-light:   #f9a8d4;
-  --accent-lighter: #f9d0e8;
+  --accent:         #ef4444;
+  --accent-rgb:     239, 68, 68;
+  --accent-light:   #fca5a5;
+  --accent-lighter: #fecaca;
   --bg-rgb:         5,  5,  16;
   --panel-rgb:      7,  6,  18;
   --statusbar-rgb:  10, 8,  20;

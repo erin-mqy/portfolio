@@ -160,15 +160,15 @@ async function wpSwitchTo(index) {
 
 function wpClear() {
   const root = document.documentElement;
-  root.style.setProperty('--accent',         '#f472b6');
-  root.style.setProperty('--accent-rgb',     '244, 114, 182');
-  root.style.setProperty('--accent-light',   '#f9a8d4');
-  root.style.setProperty('--accent-lighter', '#f9d0e8');
+  root.style.setProperty('--accent',         '#ef4444');
+  root.style.setProperty('--accent-rgb',     '239, 68, 68');
+  root.style.setProperty('--accent-light',   '#fca5a5');
+  root.style.setProperty('--accent-lighter', '#fecaca');
   root.style.setProperty('--bg-rgb',         '5, 5, 16');
   root.style.setProperty('--panel-rgb',      '7, 6, 18');
   root.style.setProperty('--statusbar-rgb',  '10, 8, 20');
   root.style.setProperty('--titlebar-rgb',   '18, 10, 28');
-  window.starAccentRgb = '255, 200, 230';
+  window.starAccentRgb = '255, 160, 160';
 
   [wpSlotA, wpSlotB].forEach(el => {
     el.style.transition = 'opacity 1.8s ease';
