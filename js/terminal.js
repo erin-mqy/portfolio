@@ -12,8 +12,8 @@ Obligatory, I use Arch Manual Install BTW</div>
 
 <br>
 <div class="output">Location   <span class="accent">Kuala Lumpur, Malaysia</span></div>
-<div class="output">Focus      <span class="accent">Game Development, Data Science, Computer Architecture</span></div>
-<div class="output">Status     <span class="accent">Currently under a traineeship</span></div>
+<div class="output">Focus      <span class="accent">Full-Stack Development, AI/ML Integration, Data Science</span></div>
+<div class="output">Status     <span class="accent">Trainee @ INITIATE.MY</span></div>
 `,
 
   projects: `
@@ -28,19 +28,53 @@ zero-shot classification + UMAP/K-Means clustering.</div>
 </div>
 
 <div class="proj">
+  <div class="proj-name">◆ match</div>
+  <div class="output">Automated social media scrapers (Facebook, TikTok, X) to
+monitor anti-Rohingya sentiment & disinformation in Malaysia.
+ETL pipeline with pandas, Google Drive API, and AWS S3.</div>
+  <div class="muted">Python · Apify · Google API · pandas · AWS S3 · Jupyter</div>
+</div>
+
+<div class="proj">
+  <div class="proj-name">◆ legalrag</div>
+  <div class="output">RESTful API integrating a RAG pipeline over U.S. Supreme Court
+legal documents. 5 FastAPI endpoints, async processing, load
+testing dashboard, and Llama 3 via Ollama + ChromaDB.</div>
+  <div class="muted">Python · FastAPI · ChromaDB · Ollama · Llama 3</div>
+</div>
+
+<div class="proj">
   <div class="proj-name">◆ news-aggregator</div>
   <div class="output">Self-hosted AI news dashboard for Malaysia & SEA. Daily
 RSS scraping via GitHub Actions, Claude-generated article
 summaries, live search, and topic-filtered briefings.</div>
-  <div class="muted">Python · Anthropic API · GitHub Actions · Vanilla JS</div>
+  <div class="muted">Python · Anthropic API · GitHub Actions · n8n · Vanilla JS</div>
 </div>
+
 <div class="proj">
   <div class="proj-name">◆ chunithm-ocr</div>
   <div class="output">Local OCR tool for CHUNITHM score screenshots. Supports
-NEW/SUN/LUMINOUS layouts with Japanese OCR, auto image
-preprocessing, duplicate detection, and a Streamlit UI.</div>
-  <div class="muted">Python · pytesseract · OpenCV · PaddleOCR · Streamlit</div>
+NEW/SUN/LUMINOUS layouts with bilingual Japanese/English OCR,
+image preprocessing pipeline, and a self-hosted web app.</div>
+  <div class="muted">Python · Tesseract 5 · OpenCV · PaddleOCR · Streamlit</div>
 </div>
+
+<div class="proj">
+  <div class="proj-name">◆ homelab</div>
+  <div class="output">Personal Linux server (Debian/Arch) with Docker Compose —
+media servers (Jellyfin, Navidrome, Arr stacks), n8n, penpot,
+health checks, cron scheduling, and persistent volumes.</div>
+  <div class="muted">Linux · Docker · Debian · Arch · n8n · self-hosting</div>
+</div>
+
+<div class="proj">
+  <div class="proj-name">◆ spinny-metal-game</div>
+  <div class="output">3D Unity 6 capstone game built with a team of 7 using Agile
+sprints. Designed 3D assets in Blender and implemented
+Singleton, State Machine, and Factory design patterns.</div>
+  <div class="muted">Unity 6 · C# · Blender · Affinity Suite</div>
+</div>
+
 <div class="proj">
   <div class="proj-name">◆ danmaku</div>
   <div class="output">Bullet hell game written in C with SDL2. Full game loop,
@@ -54,15 +88,19 @@ game states — built from scratch.</div>
 <div class="section-head">── skills ──────────────────────────────────</div>
 <div class="output" style="margin-bottom:6px">Languages</div>
 <div style="margin-bottom:12px">
-  <span class="stag">Python</span><span class="stag">Rust</span><span class="stag">JavaScript</span><span class="stag">C</span>
+  <span class="stag">Python</span><span class="stag">JavaScript</span><span class="stag">C++</span><span class="stag">C#</span><span class="stag">Java</span><span class="stag">C</span><span class="stag">HTML/CSS</span>
 </div>
-<div class="output" style="margin-bottom:6px">ML / NLP</div>
+<div class="output" style="margin-bottom:6px">AI / ML</div>
 <div style="margin-bottom:12px">
-  <span class="stag">sentence-transformers</span><span class="stag">BART</span><span class="stag">UMAP</span><span class="stag">scikit-learn</span><span class="stag">HDBSCAN</span>
+  <span class="stag">RAG systems</span><span class="stag">Ollama · Llama 3</span><span class="stag">ChromaDB</span><span class="stag">sentence-transformers</span><span class="stag">BART</span><span class="stag">UMAP</span><span class="stag">scikit-learn</span>
 </div>
 <div class="output" style="margin-bottom:6px">Data &amp; Web</div>
 <div style="margin-bottom:12px">
-  <span class="stag">pandas</span><span class="stag">Streamlit</span><span class="stag">GitHub Actions</span><span class="stag">Docker</span>
+  <span class="stag">FastAPI</span><span class="stag">pandas</span><span class="stag">Selenium</span><span class="stag">D3.js</span><span class="stag">Streamlit</span><span class="stag">Docker</span><span class="stag">n8n</span><span class="stag">Power BI</span>
+</div>
+<div class="output" style="margin-bottom:6px">Design &amp; Tools</div>
+<div style="margin-bottom:12px">
+  <span class="stag">Unity</span><span class="stag">Unreal Engine</span><span class="stag">Blender</span><span class="stag">Adobe Creative Suite</span><span class="stag">Godot</span>
 </div>
 `,
 
@@ -120,9 +158,9 @@ game states — built from scratch.</div>
     <div><span style="color:var(--accent-light);font-weight:bold">visitor</span><span class="muted">@</span><span style="color:var(--accent-light);font-weight:bold">portfolio</span></div>
     <div class="muted" style="margin-bottom:4px">─────────────────────────</div>
     <div><span class="accent" style="display:inline-block;width:52px">name</span><span class="output">Muhammad Khairie bin Iswandy</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">born</span><span class="output">2002 · Kuala Lumpur, MY</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">edu</span><span class="output">BS in Computer and Information Science</span></div>
-    <div><span class="accent" style="display:inline-block;width:52px">skill</span><span class="output">Web-Dev · Data Science · Computer Architecture</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">born</span><span class="output">2002 · Kuching, Sarawak, MY</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">edu</span><span class="output">BS CIS · The Ohio State University · Dec 2025</span></div>
+    <div><span class="accent" style="display:inline-block;width:52px">skill</span><span class="output">Web-Dev · AI/ML · Data Science</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">wm</span><span class="output">Niri</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">shell</span><span class="output">zsh</span></div>
     <div><span class="accent" style="display:inline-block;width:52px">distro</span><span class="output">I use Arch btw</span></div>
