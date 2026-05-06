@@ -15,10 +15,12 @@ function openTextViewer(filename, content) {
       <div class="fe-title">~/blog/${filename}</div>
     </div>
     <div class="tv-body">
-      <pre class="tv-content">${escHtml(content)}</pre>
+      <div class="tv-post"></div>
     </div>
     <div class="resize-handle"></div>
   `;
+
+  renderBlogPost(win.querySelector('.tv-post'), content);
 
   document.getElementById('desktop').appendChild(win);
   centerWin(win, 80, 20);
@@ -34,6 +36,75 @@ function openTextViewer(filename, content) {
     win.style.transform = 'scale(0.95)';
     setTimeout(() => win.remove(), 150);
   });
+}
+
+function renderBlogPost(container, text) {
+  const lines = text.split('\n');
+  const isUnderline = s => /^[=\-]{2,}\s*$/.test(s);
+
+  let bodyStart = 0;
+  if (lines.length > 1 && isUnderline(lines[1])) {
+    const h1 = document.createElement('h1');
+    h1.textContent = lines[0].trim();
+    container.appendChild(h1);
+    bodyStart = 2;
+  }
+
+  const body = lines.slice(bodyStart).join('\n').trim();
+  const blocks = body.split(/\n{2,}/);
+
+  for (const block of blocks) {
+    const trimmed = block.trim();
+    if (!trimmed) continue;
+
+    const m = trimmed.match(/^:::html\n([\s\S]*)\n:::$/);
+    if (m) {
+      appendDemoBlock(container, m[1]);
+    } else {
+      const p = document.createElement('p');
+      p.textContent = trimmed;
+      container.appendChild(p);
+    }
+  }
+}
+
+function appendDemoBlock(container, code) {
+  const demo = document.createElement('div');
+  demo.className = 'tv-demo';
+
+  const label = document.createElement('span');
+  label.className = 'tv-demo-label';
+  label.textContent = 'live demo';
+
+  const frame = document.createElement('iframe');
+  frame.className = 'tv-demo-frame';
+  frame.setAttribute('sandbox', 'allow-scripts');
+  frame.srcdoc = `<!doctype html><html><head><meta charset="utf-8"><base href="${location.origin}/"><style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; padding: 14px; font-family: system-ui, sans-serif;
+           color: #cdd6f4; background: #13131f; }
+  </style></head><body>${code}</body></html>`;
+
+  const details = document.createElement('details');
+  details.className = 'tv-demo-source';
+  const summary = document.createElement('summary');
+  summary.textContent = 'source';
+  const pre = document.createElement('pre');
+  pre.textContent = code;
+  details.appendChild(summary);
+  details.appendChild(pre);
+
+  demo.appendChild(label);
+  demo.appendChild(frame);
+  demo.appendChild(details);
+  container.appendChild(demo);
+
+  const tvBody = container.closest('.tv-body');
+  if (tvBody) {
+    new ResizeObserver(entries => {
+      frame.style.height = Math.max(120, Math.round(entries[0].contentRect.height * 0.55)) + 'px';
+    }).observe(tvBody);
+  }
 }
 
 // ── VIDEO PLAYER ───────────────────────────────────────────────────────────

@@ -6,10 +6,33 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat.
 
+:::html
+<style>
+  body { display:flex; align-items:center; justify-content:center; height:80vh; margin:0; }
+  .box {
+    width:90px; height:90px;
+    background: #7aa2f7;
+    border-radius:8px;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    font-family:monospace; font-size:12px; color:#1a1b26; font-weight:700;
+    transition: transform .3s cubic-bezier(.34,1.56,.64,1), background .25s;
+    user-select:none;
+  }
+  .box:hover { transform:scale(1.12) rotate(6deg); }
+  .box:active { transform:scale(0.92); }
+</style>
+<div class="box" id="b">click me</div>
+<script>
+  const colors = ['#7aa2f7','#bb9af7','#9ece6a','#f7768e','#e0af68'];
+  let i = 0;
+  document.getElementById('b').addEventListener('click', function() {
+    i = (i + 1) % colors.length;
+    this.style.background = colors[i];
+  });
+</script>
+:::
+
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
 eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget,
-tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
